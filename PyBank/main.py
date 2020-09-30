@@ -43,6 +43,7 @@ with open(csv_path) as csvfile:
     # gets the average of the dataset
     average = int(totalProfitLoss/rowCount)
 
+# Creates text file with data output from data analysis
 file_write_path = os.path.join("..", "Analysis","budget_data_finshed_final.txt")
 with open(file_write_path, "a") as data_file:
     data_file.write("Financial Analysis\n")
