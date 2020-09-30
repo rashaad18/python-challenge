@@ -3,6 +3,7 @@
 import os
 import csv
 
+# variables & list
 canidates = ["Khan","Correy", "Li", "O'Tooley"]
 khanCount = 0
 correyCount = 0
@@ -18,7 +19,7 @@ csv_path = os.path.join("..","Resources","election_data.csv")
 with open(csv_path) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
     
-    # iterates through the dataset
+    # iterates through the dataset and adds a count to the canidate pulled from each row
     for row in csv_reader:
        if(row[2] == "Khan"):
            khanCount = khanCount + 1
@@ -39,6 +40,8 @@ correy_percent = round(getCanidatePercentage(correyCount,total_votes),2)
 li_percent = round(getCanidatePercentage(liCount,total_votes),2)
 oTooley_percent = round(getCanidatePercentage(oTooleyCount,total_votes),2)
 winner = ""
+
+# Checks to see whos poll percentage is higher so a winner can be selected and displayed
 if((khan_percent > correy_percent) & (khan_percent > li_percent) & (khan_percent > oTooley_percent)):
     winner = canidates[0]
 elif((correy_percent > khan_percent) & (correy_percent > li_percent) & (correy_percent > oTooley_percent)):
@@ -63,7 +66,7 @@ with open(file_write_path, "w") as data_file:
     data_file.write("Winner: " + winner + "\n")
     data_file.write("---------------------\n")
 
-#print output to console        
+#print output to console  of election results      
 print("Election Results")
 print("---------------------")
 print("Total Votes: " + str(total_votes))
