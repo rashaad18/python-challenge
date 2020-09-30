@@ -34,10 +34,10 @@ with open(csv_path) as csvfile:
 total_votes = khanCount + correyCount + liCount + oTooleyCount
     
 # each canidates percentage of votes using get function
-khan_percent = int(getCanidatePercentage(khanCount,total_votes))
-correy_percent = int(getCanidatePercentage(correyCount,total_votes))
-li_percent = int(getCanidatePercentage(liCount,total_votes))
-oTooley_percent = int(getCanidatePercentage(oTooleyCount,total_votes))
+khan_percent = round(getCanidatePercentage(khanCount,total_votes),2)
+correy_percent = round(getCanidatePercentage(correyCount,total_votes),2)
+li_percent = round(getCanidatePercentage(liCount,total_votes),2)
+oTooley_percent = round(getCanidatePercentage(oTooleyCount,total_votes),2)
 winner = ""
 if((khan_percent > correy_percent) & (khan_percent > li_percent) & (khan_percent > oTooley_percent)):
     winner = canidates[0]
@@ -47,6 +47,21 @@ elif((li_percent > khan_percent) & (li_percent > correy_percent) & (li_percent >
     winner = canidates[2]
 elif((oTooley_percent > khan_percent) & (oTooley_percent > li_percent) & (oTooley_percent > correy_percent)):
     winner = canidates[3]
+
+# Creates text file with data output from data analysis
+file_write_path = os.path.join("..", "Analysis","electrion_data_finshed.txt")
+with open(file_write_path, "w") as data_file:
+    data_file.write("Election Results\n")
+    data_file.write("---------------------\n")
+    data_file.write("Total Votes: " + str(total_votes) +"\n")
+    data_file.write("---------------------\n")
+    data_file.write("Khan: " + str(khan_percent) + "% (" + str(khanCount) + ")\n")
+    data_file.write("Correy: " + str(correy_percent) + "% (" + str(correyCount) + ")\n")
+    data_file.write("Li: " + str(li_percent) + "% (" + str(liCount) + ")\n")
+    data_file.write("O'Tooley: " + str(oTooley_percent) + "% (" + str(oTooleyCount) + ")\n")
+    data_file.write("---------------------\n")
+    data_file.write("Winner: " + winner + "\n")
+    data_file.write("---------------------\n")
 
 #print output to console        
 print("Election Results")
