@@ -3,6 +3,7 @@
 import os
 import csv
 
+canidates = ["Khan","Correy", "Li", "O'Tooley"]
 khanCount = 0
 correyCount = 0
 liCount = 0
@@ -19,7 +20,6 @@ with open(csv_path) as csvfile:
     
     # iterates through the dataset
     for row in csv_reader:
-       #print(row[0] + "   " + row[1] + " " + row[2])
        if(row[2] == "Khan"):
            khanCount = khanCount + 1
        elif(row[2] == "Correy"):
@@ -38,6 +38,15 @@ khan_percent = int(getCanidatePercentage(khanCount,total_votes))
 correy_percent = int(getCanidatePercentage(correyCount,total_votes))
 li_percent = int(getCanidatePercentage(liCount,total_votes))
 oTooley_percent = int(getCanidatePercentage(oTooleyCount,total_votes))
+winner = ""
+if((khan_percent > correy_percent) & (khan_percent > li_percent) & (khan_percent > oTooley_percent)):
+    winner = canidates[0]
+elif((correy_percent > khan_percent) & (correy_percent > li_percent) & (correy_percent > oTooley_percent)):
+    winner = canidates[1]
+elif((li_percent > khan_percent) & (li_percent > correy_percent) & (li_percent > oTooley_percent)):
+    winner = canidates[2]
+elif((oTooley_percent > khan_percent) & (oTooley_percent > li_percent) & (oTooley_percent > correy_percent)):
+    winner = canidates[3]
 
 #print output to console        
 print("Election Results")
@@ -49,5 +58,5 @@ print("Correy: " + str(correy_percent) + "% (" + str(correyCount) + ")")
 print("Li: " + str(li_percent) + "% (" + str(liCount) + ")")
 print("O'Tooley: " + str(oTooley_percent) + "% (" + str(oTooleyCount) + ")")
 print("---------------------")
-print("Winner: ")
+print("Winner: " + winner)
 print("---------------------")
