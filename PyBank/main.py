@@ -45,7 +45,7 @@ with open(csv_path) as csvfile:
 
 # Creates text file with data output from data analysis
 file_write_path = os.path.join("..", "Analysis","budget_data_finshed_final.txt")
-with open(file_write_path, "a") as data_file:
+with open(file_write_path, "w") as data_file:
     data_file.write("Financial Analysis\n")
     data_file.write("-----------------------\n")
     data_file.write("Total Months : " + str(rowCount) + "\n")
